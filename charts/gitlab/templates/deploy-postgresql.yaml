@@ -10,6 +10,8 @@ spec:
   selector:
     matchLabels:
       name: gitlab-postgresql
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
