@@ -48,10 +48,6 @@ data:
         root_password: {{ $.Values.gitlab.rootPassword }}
         user_create: true
       tasks:
-        - name: Pause for 5 minutes waiting for GitLab
-          ansible.builtin.pause:
-            minutes: 5
-
         - name: Check GitLab Liveness
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/projects
