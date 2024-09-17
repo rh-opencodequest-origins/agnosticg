@@ -87,6 +87,7 @@ data:
             gitlab_host: "{{ $.Values.gitlab.host }}"
             gitlab_destination_group: development
             cluster_subdomain: ".{{ $.Values.cluster.subdomain }}"
+            gitlab_user_count: "{{ $.Values.gitlab.users.count }}"
 {{- end }}
             
         - name: Add new files to the repository
