@@ -30,8 +30,12 @@ gitlab:
   #   repo:
   #   - name: software-templates
   #     url: https://github.com/treddy08/software-templates.git
+  templates: []
 
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
   dbName: gitlab_production
+
+cluster:
+  subdomain: 
