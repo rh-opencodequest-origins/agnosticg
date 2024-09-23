@@ -31,6 +31,7 @@ gitlab:
   #   - name: software-templates
   #     url: https://github.com/treddy08/software-templates.git
   templates: []
+  destinationgroup: development
 
 postgresql:
   dbUser: gitlab
