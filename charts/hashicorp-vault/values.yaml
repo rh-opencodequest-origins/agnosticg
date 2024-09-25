@@ -1,2 +1,10 @@
+nameOverride: vault
+
 kubernetes:
   apiserver:
+
+vault:
+  auth:
+    namespace: default
+
+  
