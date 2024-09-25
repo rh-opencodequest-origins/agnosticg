@@ -40,3 +40,7 @@ postgresql:
 
 cluster:
   subdomain: 
+
+gitops:
+  namespace:
+  project: default
