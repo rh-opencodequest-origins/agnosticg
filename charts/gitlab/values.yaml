@@ -44,3 +44,6 @@ cluster:
 gitops:
   namespace:
   project: default
+
+quay:
+  host: 

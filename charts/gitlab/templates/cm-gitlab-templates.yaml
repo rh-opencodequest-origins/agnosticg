@@ -90,8 +90,9 @@ data:
             gitlab_user_count: "{{ $.Values.gitlab.users.count }}"
             rhdh_gitops_namespace: "{{ $.Values.gitops.namespace }}"
             rhdh_gitops_project: "{{ $.Values.gitops.project }}"
+            quay_host: "{{ $.Values.quay.host }}"
 {{- end }}
-        
+
         - name: Add new files to the repository
           ansible.builtin.command:
             chdir: >-
