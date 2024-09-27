@@ -5,40 +5,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
 apiVersion: v1
 data:
-  generate-root-token.sh: |
-    set -x
-
-    gitlab_host="https://{{ $.Values.gitlab.host }}"
-    gitlab_user="root"
-    gitlab_password="{{ $.Values.gitlab.rootPassword }}"
-
-    oc delete secret root-user-personal-token -n gitlab
-
-    body_header=$(curl -c /tmp/cookies.txt -i "${gitlab_host}/users/sign_in" -s --insecure)
-
-    csrf_token=$(echo $body_header | perl -ne 'print "$1\n" if /new_user.*?authenticity_token"[[:blank:]]value="(.+?)"/' | sed -n 1p)
-
-    curl -L -b /tmp/cookies.txt -c /tmp/cookies.txt -i "${gitlab_host}/users/sign_in" \
-      --data-raw "user%5Blogin%5D=${gitlab_user}&user%5Bpassword%5D=${gitlab_password}" \
-      --data-urlencode "authenticity_token=${csrf_token}" \
-      --compressed \
-      --insecure 2>&1 > /dev/null
-
-    body_header=$(curl -H 'user-agent: curl' -b /tmp/cookies.txt -i "${gitlab_host}/-/profile/personal_access_tokens" -s --insecure)
-
-    csrf_token=$(echo $body_header | perl -ne 'print "$1\n" if /csrf-token"[[:blank:]]content="(.+?)"/' | sed -n 1p)
-
-    expires_at=$(date -d "+30 days" '+%Y-%m-%d')
-
-    body_header=$(curl -L -b /tmp/cookies.txt "${gitlab_host}/-/profile/personal_access_tokens" \
-        --data-urlencode "authenticity_token=${csrf_token}" \
-        --data 'personal_access_token[name]=golab-generated&personal_access_token[expires_at]=${expires_at}&personal_access_token[scopes][]=api' --insecure)
-
-    personal_access_token=$(echo $body_header | perl -ne 'print "$1\n" if /new_token":"(.+?)"/' | sed -n 1p)
-
-    echo $personal_access_token
-
-    oc create secret generic root-user-personal-token --from-literal=token=$personal_access_token -n {{ $.Release.Namespace }}
   playbook.yaml: |
     ---
     - name: Configure GitLab
@@ -48,6 +14,10 @@ data:
         root_password: {{ $.Values.gitlab.rootPassword }}
         user_create: true
       tasks:
+        - name: Pause for 5 minutes waiting for GitLab
+          ansible.builtin.pause:
+            minutes: 5
+
         - name: Check GitLab Liveness
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/projects
@@ -60,7 +30,11 @@ data:
 
         - name: Generate root user personal token
           shell: |
-            sh /scripts/generate-root-token.sh
+            POD=$(oc get pod -l app=gitlab -n gitlab --no-headers | awk '{print $1}')
+            oc exec $POD -n {{ $.Release.Namespace }} -- /bin/sh -c /scripts/create-root-pat.sh
+            ROOT_PAT=$(oc exec $POD -n {{ $.Release.Namespace }} -- /bin/sh -c "cat /tmp/root.pat")
+            oc delete secret root-user-personal-token -n {{ $.Release.Namespace }} --ignore-not-found
+            oc create secret generic root-user-personal-token --from-literal=token=$ROOT_PAT -n {{ $.Release.Namespace }}
 
         - name: Retrieve root token
           kubernetes.core.k8s_info:
@@ -86,6 +60,7 @@ data:
             body_format: form-urlencoded
             body:
               import_sources: "git,github,gitea"
+              version_check_enabled: "false"
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
             validate_certs: false
@@ -98,8 +73,8 @@ data:
             body_format: form-urlencoded
             body:
               admin: false
-              email: user{{ "{{" }} item {{ "}}" }}@opentlc.com
-              public_email: user{{ "{{" }} item {{ "}}" }}@opentlc.com
+              email: user{{ "{{" }} item {{ "}}" }}@demo.redhat.com
+              public_email: user{{ "{{" }} item {{ "}}" }}@demo.redhat.com
               skip_confirmation: true
               username: user{{ "{{" }} item {{ "}}" }}
               password: {{ $.Values.gitlab.users.password }}

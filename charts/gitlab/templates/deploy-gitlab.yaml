@@ -41,9 +41,15 @@ spec:
         volumeMounts:
         - mountPath: /home/git/data
           name: gitlab-persistent-storage
+        - mountPath: /scripts
+          name: create-root-pat-vol
       volumes:
       - name: gitlab-persistent-storage
         persistentVolumeClaim:
           claimName: gitlab-persistent-storage
+      - name: create-root-pat-vol
+        configMap:
+          name: cm-create-root-pat
+          defaultMode: 0777
       serviceAccount: gitlab
       serviceAccountName: gitlab
