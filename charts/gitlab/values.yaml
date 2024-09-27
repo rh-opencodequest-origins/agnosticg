@@ -47,3 +47,7 @@ gitops:
 
 quay:
   host: 
+
+vault:
+  name: vault
+  namespace: vault
