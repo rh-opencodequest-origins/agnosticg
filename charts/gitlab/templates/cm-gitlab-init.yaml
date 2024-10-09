@@ -148,8 +148,11 @@ data:
 {{- end }}
 {{- end }}
 
+{{- if $item.user }}
+{{- range $item1 := $item.user }}
+
         - name: Add user to group
-          when: item.username.startswith('user')
+          when: item.username == '{{ $item1.id }}'
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/groups/{{ "{{" }} r_group.json.id {{ "}}" }}/members
             method: POST
@@ -166,6 +169,8 @@ data:
           delay: 5
           until: r_group_user.status == 201
           loop: '{{ "{{" }} r_users.json {{ "}}" }}'
+{{- end }}
+{{- end }}
 {{- end }}
 
         - name: Set webhook secret
