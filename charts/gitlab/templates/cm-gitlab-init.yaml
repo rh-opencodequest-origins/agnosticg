@@ -66,6 +66,8 @@ data:
             validate_certs: false
             status_code: 200
 
+{{- range $item := .Values.gitlab.users }}
+
         - name: Create users
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/users
@@ -73,12 +75,12 @@ data:
             body_format: form-urlencoded
             body:
               admin: false
-              email: user{{ "{{" }} item {{ "}}" }}@demo.redhat.com
-              public_email: user{{ "{{" }} item {{ "}}" }}@demo.redhat.com
+              email: {{ $item.id }}@demo.redhat.com
+              public_email: {{ $item.id }}@demo.redhat.com
               skip_confirmation: true
-              username: user{{ "{{" }} item {{ "}}" }}
-              password: {{ $.Values.gitlab.users.password }}
-              name: User{{ "{{" }} item {{ "}}" }} GitLab
+              username: {{ $item.id }}
+              password: {{ $item.password }}
+              name: {{ $item.id }} GitLab
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
             validate_certs: false
@@ -87,7 +89,7 @@ data:
           retries: 100
           delay: 5
           until: r_user.status == 201
-          loop: '{{ "{{" }} range(1, {{ $.Values.gitlab.users.count }} + 1) | list {{ "}}" }}'
+{{- end }}
 
         - name: List users
           ansible.builtin.uri:

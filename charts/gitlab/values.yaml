@@ -22,9 +22,7 @@ gitlab:
     db: "0123456789"
     otp: "0123456789"
     secret: "0123456789"
-  users:
-    password: openshift
-    count: 2
+  users: []
   groups: []
   # groups:
   # - name: backstage
