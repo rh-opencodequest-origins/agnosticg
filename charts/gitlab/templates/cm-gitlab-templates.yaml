@@ -87,7 +87,6 @@ data:
             gitlab_host: "{{ $.Values.gitlab.host }}"
             gitlab_destination_group: "{{ $.Values.gitlab.destinationgroup }}"
             cluster_subdomain: "{{ $.Values.cluster.subdomain }}"
-            gitlab_user_count: "{{ $.Values.gitlab.users.count }}"
             rhdh_gitops_namespace: "{{ $.Values.gitops.namespace }}"
             rhdh_gitops_project: "{{ $.Values.gitops.project }}"
             quay_host: "{{ $.Values.quay.host }}"
