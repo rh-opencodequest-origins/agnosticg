@@ -132,7 +132,8 @@ data:
               name: '{{ "{{" }} item.name {{ "}}" }}'
               import_url: '{{ "{{" }} item.url {{ "}}" }}'
               visibility: public
-              builds_access_level: disabled
+              builds_access_level: enabled
+              auto_devops_enabled: false
               namespace_id: '{{ "{{" }} r_group.json.id {{ "}}" }}'
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
