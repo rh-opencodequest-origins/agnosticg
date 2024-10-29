@@ -66,7 +66,7 @@ data:
             validate_certs: false
             status_code: 200
 
-{{- range $item := .Values.gitlab.users }}
+{{- range $item := .Values.gitlab.users.users }}
 
         - name: Create users
           ansible.builtin.uri:
@@ -75,11 +75,11 @@ data:
             body_format: form-urlencoded
             body:
               admin: false
-              email: {{ $item.id }}@demo.redhat.com
-              public_email: {{ $item.id }}@demo.redhat.com
+              email: {{ $item.id }}@rhdemo.com
+              public_email: {{ $item.id }}@rhdemo.com
               skip_confirmation: true
               username: {{ $item.id }}
-              password: {{ $item.password }}
+              password: {{ include "gitlab-user.password" $ }}
               name: {{ $item.id }} GitLab
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'

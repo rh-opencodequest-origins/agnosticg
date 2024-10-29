@@ -85,7 +85,6 @@ data:
             mode: "0660"         
           vars:
             gitlab_host: "{{ $.Values.gitlab.host }}"
-            gitlab_destination_group: "{{ $.Values.gitlab.destinationgroup }}"
             cluster_subdomain: "{{ $.Values.cluster.subdomain }}"
             rhdh_gitops_namespace: "{{ $.Values.gitops.namespace }}"
             rhdh_gitops_project: "{{ $.Values.gitops.project }}"

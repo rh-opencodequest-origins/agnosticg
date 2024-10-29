@@ -1,36 +1,70 @@
 gitlab:
   image: quay.io/redhat-gpte/gitlab:17.4.1
   email:
-    address: "gitlab@example.com"
-    displayName: "Tyrell Reddy"
-    replyTo: "noreply@redhat.com"
+    address: "gitlab@rhdemo.com"
+    displayName: "GitLab Admin"
+    replyTo: "noreply@rhdemo.com"
   smtp:
     enabled: "false"
-    domain: "example.com"
-    host: "smtp.gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com"
+    domain: "rhdemo.com"
+    host:
     port: "587"
     user: "gitlab"
     password: "gitlab"
   ssh:
-    host: "ssh.gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com"
+    host:
     port: "22"
-  rootPassword: openshift
-  host: gitlab-gitlab.apps.cluster-br9rv.br9rv.sandbox1083.opentlc.com
+  rootPassword:
+  host:
   https: "true"
-  rootEmail: "treddy@redhat.com"
+  rootEmail: "root@rhdemo.com"
   keyBase:
     db: "0123456789"
     otp: "0123456789"
     secret: "0123456789"
-  users: []
-  groups: []
-  # groups:
-  # - name: backstage
-  #   repo:
-  #   - name: software-templates
-  #     url: https://github.com/treddy08/software-templates.git
-  templates: []
-  destinationgroup: development
+  users:
+    users:
+      - id: dev1
+      - id: dev2
+      - id: pe1
+      - id: pe2
+    password: 
+  groups:
+    - name: rhdh
+      repo:
+        - name: template-quarkus-simple
+          url: https://github.com/btison/rhdh-template-quarkus-simple.git
+      users:
+        - id: pe1
+        - id: pe2
+    - name: devteam1
+      repo: []
+      users:
+        - id: dev1
+        - id: dev2
+    - name: parasol
+      repo:
+        - name: parasol-store
+          url: https://github.com/btison/pew-parasol-store.git
+        - name: parasol-web
+          url: https://github.com/btison/pew-parasol-web.git
+        - name: parasol-db-manifests
+          url: https://github.com/btison/pew-parasol-db-manifests.git
+        - name: parasol-store-manifests
+          url: https://github.com/btison/pew-parasol-store-manifests.git
+        - name: parasol-web-manifests
+          url: https://github.com/btison/pew-parasol-web-manifests.git
+        - name: parasol-store-build-manifests
+          url: https://github.com/btison/pew-parasol-store-build-manifests.git
+      users:
+        - id: dev1
+        - id: dev2
+  templates:
+    - group: rhdh
+      project: template-quarkus-simple
+      branch: main
+      templates:
+        - template.yaml
 
 postgresql:
   dbUser: gitlab
