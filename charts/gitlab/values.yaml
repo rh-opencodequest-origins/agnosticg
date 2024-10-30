@@ -34,6 +34,8 @@ gitlab:
       repo:
         - name: template-quarkus-simple
           url: https://github.com/btison/rhdh-template-quarkus-simple.git
+        - name: parasol-store-dev-template
+          url: https://github.com/btison/pwe-parasol-store-dev-templates.git
       users:
         - id: pe1
         - id: pe2
