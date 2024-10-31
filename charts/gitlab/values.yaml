@@ -61,6 +61,8 @@ gitlab:
       users:
         - id: dev1
         - id: dev2
+        - id: pe1
+        - id: pe2
   templates:
     - group: rhdh
       project: template-quarkus-simple
