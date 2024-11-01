@@ -48,8 +48,12 @@ gitlab:
       repo:
         - name: parasol-store
           url: https://github.com/btison/pew-parasol-store.git
+          properties:
+            onlyMergeWhenPipelineSucceeds: true
         - name: parasol-web
           url: https://github.com/btison/pew-parasol-web.git
+          properties:
+            onlyMergeWhenPipelineSucceeds: true
         - name: parasol-db-manifests
           url: https://github.com/btison/pew-parasol-db-manifests.git
         - name: parasol-store-manifests

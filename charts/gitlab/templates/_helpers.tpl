@@ -8,3 +8,16 @@ User password
 {{- randAlpha 8 }}
 {{- end }}
 {{- end }}
+
+{{ define "gitlab.repo.check-pipeline" -}}
+{{- $arg := . }}
+{{- if $arg.properties }}
+{{- if $arg.properties.onlyMergeWhenPipelineSucceeds }}
+{{- $arg.properties.onlyMergeWhenPipelineSucceeds }}
+{{- else }}
+{{- false }}
+{{- end }}
+{{- else }}
+{{- false }}
+{{- end }}
+{{- end }}
