@@ -36,6 +36,8 @@ gitlab:
           url: https://github.com/btison/rhdh-template-quarkus-simple.git
         - name: parasol-store-dev-template
           url: https://github.com/btison/pwe-parasol-store-dev-templates.git
+        - name: developer-hub-config
+          url: https://github.com/btison/pew-developer-hub-config.git
       users:
         - id: pe1
         - id: pe2
