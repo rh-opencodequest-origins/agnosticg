@@ -75,6 +75,15 @@ gitlab:
         - id: dev2
         - id: pe1
         - id: pe2
+    - name: global
+      repo:
+        - name: global-techdocs
+          url: https://github.com/redhat-pe-workshop/global-techdocs.git
+      users:
+        - id: dev1
+        - id: dev2
+        - id: pe1
+        - id: pe2
   templates:
     - group: rhdh
       project: template-quarkus-simple
