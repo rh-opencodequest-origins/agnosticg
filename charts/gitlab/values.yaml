@@ -102,6 +102,11 @@ gitlab:
       branch: main
       templates:
         - template.yaml
+    - group: global
+      project: global-techdocs
+      branch: main
+      templates:
+        - catalog-info.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
