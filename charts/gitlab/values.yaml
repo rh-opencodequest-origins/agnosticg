@@ -72,6 +72,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/parasol-web-manifests.git
         - name: parasol-store-build-manifests
           url: https://github.com/redhat-pe-workshop/parasol-store-build-manifests.git
+        - name: envelope-parasol-catalog
+          url: https://github.com/redhat-pe-workshop/envelope-parasol-catalog.git
       users:
         - id: dev1
         - id: dev2
