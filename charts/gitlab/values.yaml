@@ -109,6 +109,7 @@ gitlab:
       branch: main
       templates:
         - catalog-info.yaml
+        - mkdocs.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
