@@ -46,6 +46,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/pe-workshop-entities.git
         - name: template-developer-self-service
           url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
+        - name: orchestrator-workflows
+          url: https://github.com/btison/pe-workshop-orchestrator-workflows.git
       users:
         - id: pe1
         - id: pe2
@@ -119,6 +121,11 @@ gitlab:
         - postgres15/template.yaml
         - namespace/template-small.yaml
         - namespace/template-medium.yaml
+    - group: rhdh
+      project: orchestrator-workflows
+      branch: main
+      templates:
+        - manifests/greeting/application.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
@@ -137,3 +144,6 @@ quay:
 vault:
   name: vault
   namespace: vault
+
+orchestrator:
+  namespace: orchestrator
