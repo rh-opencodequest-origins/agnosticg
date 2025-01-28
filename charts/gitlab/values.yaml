@@ -47,7 +47,7 @@ gitlab:
         - name: template-developer-self-service
           url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
         - name: orchestrator-workflows
-          url: https://github.com/btison/pe-workshop-orchestrator-workflows.git
+          url: https://github.com/redhat-pe-workshop/orchestrator-workflows.git
       users:
         - id: pe1
         - id: pe2
