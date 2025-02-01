@@ -37,7 +37,7 @@ gitlab:
         - name: parasol-store-dev-template
           url: https://github.com/redhat-pe-workshop/parasol-store-dev-templates.git
         - name: developer-hub-config
-          url: https://github.com/redhat-pe-workshop/developer-hub-config.git
+          url: https://github.com/btison/pew-developer-hub-config.git
         - name: import-existing-app-template
           url: https://github.com/redhat-pe-workshop/import-existing-app-template.git
         - name: import-existing-api-template
