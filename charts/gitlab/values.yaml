@@ -127,6 +127,7 @@ gitlab:
       templates:
         - manifests/greeting/application.yaml
         - manifests/create-ocp-namespace/application.yaml
+        - manifests/create-ocp-namespace-swt/application.yaml
 postgresql:
   dbUser: gitlab
   dbPassword: passw0rd
