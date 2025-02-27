@@ -72,6 +72,8 @@ gitlab:
           url: https://github.com/redhat-pe-workshop/parasol-db-manifests.git
         - name: parasol-store-manifests
           url: https://github.com/redhat-pe-workshop/parasol-store-manifests.git
+          properties:
+            onlyMergeWhenPipelineSucceeds: true          
         - name: parasol-web-manifests
           url: https://github.com/redhat-pe-workshop/parasol-web-manifests.git
         - name: parasol-store-build-manifests
