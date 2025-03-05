@@ -51,6 +51,13 @@ gitlab:
       users:
         - id: pe1
         - id: pe2
+      project:
+        - name: rhdh-issues
+          labels:
+            - name: approved
+              color: green
+            - name: denied
+              color: red        
     - name: devteam1
       repo: []
       users:

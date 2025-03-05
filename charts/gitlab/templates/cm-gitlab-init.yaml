@@ -153,6 +153,56 @@ data:
 {{- end }}
 {{- end }}
 
+{{- if $item.project }}
+{{- range $item1 := $item.project }}
+
+        - name: Create project for group
+          ansible.builtin.uri:
+            url: https://{{ $.Values.gitlab.host }}/api/v4/projects
+            method: POST
+            body_format: form-urlencoded
+            body:
+              name: {{ $item1.name }}
+              visibility: public
+              issues_access_level: enabled
+              auto_devops_enabled: false
+              namespace_id: '{{ "{{" }} r_group.json.id {{ "}}" }}'
+            headers:
+              PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
+            validate_certs: false
+            status_code: 201
+          retries: 100
+          delay: 5
+          register: r_create_project
+          until: r_create_project.status == 201
+
+{{- if $item1.labels }}
+
+        - name: Create labels in project
+          ansible.builtin.uri:
+            url: https://{{ $.Values.gitlab.host }}/api/v4/projects/{{ "{{" }} r_create_project.json.id {{ "}}" }}/labels
+            method: POST
+            body_format: form-urlencoded
+            body:
+              name: '{{ "{{" }} item.name {{ "}}" }}'
+              color: '{{ "{{" }} item.color {{ "}}" }}'
+            headers:
+              PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
+            validate_certs: false
+            status_code: 201
+          retries: 100
+          delay: 5
+          register: r_create_label
+          until: r_create_label.status == 201
+          loop:
+{{- range $item2 := $item1.labels }}
+            - name: {{ $item2.name }}
+              color: {{ $item2.color }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{- if $item.users }}
 {{- range $item1 := $item.users }}
 
