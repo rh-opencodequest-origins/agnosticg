@@ -11,7 +11,11 @@ spec:
             - /bin/bash
             - -c
             - |
-              oc wait --for=condition=Ready=true -n vault pod/vault-0
+              echo "Wait for Vault Pod Readiness"
+              until oc get pod vault-0 -n vault -o jsonpath='{.status.conditions[?(@.type=="PodReadyToStartContainers")].status}' | grep -q True; do
+                echo "Waiting for Ready..."
+                sleep 2
+              done
               oc exec vault-0 --namespace=vault --stdin --tty -- vault operator init -format=yaml > /tmp/vault-auto-unseal-keys.txt
               cat /tmp/vault-auto-unseal-keys.txt | oc exec -i -n vault vault-0 -c vault "--" sh -c "cat > /vault/data/vault-auto-unseal-keys.txt"
               cat /vault-unseal-config/unseal.sh | oc exec -i -n vault vault-0 -c vault "--" sh -c "cat > /vault/data/unseal.sh"
