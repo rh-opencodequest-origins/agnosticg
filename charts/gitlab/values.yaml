@@ -33,21 +33,21 @@ gitlab:
     - name: rhdh
       repo:
         - name: template-quarkus-simple
-          url: https://github.com/redhat-pe-workshop/rhdh-template-quarkus-simple.git
+          url: https://github.com/rh-opencodequest-origins/rhdh-template-quarkus-simple.git
         - name: parasol-store-dev-template
-          url: https://github.com/redhat-pe-workshop/parasol-store-dev-templates.git
+          url: https://github.com/rh-opencodequest-origins/parasol-store-dev-templates.git
         - name: developer-hub-config
-          url: https://github.com/redhat-pe-workshop/developer-hub-config.git
+          url: https://github.com/rh-opencodequest-origins/developer-hub-config.git
         - name: import-existing-app-template
-          url: https://github.com/redhat-pe-workshop/import-existing-app-template.git
+          url: https://github.com/rh-opencodequest-origins/import-existing-app-template.git
         - name: import-existing-api-template
-          url: https://github.com/redhat-pe-workshop/import-api-template.git
+          url: https://github.com/rh-opencodequest-origins/import-api-template.git
         - name: rhdh-entities
-          url: https://github.com/redhat-pe-workshop/pe-workshop-entities.git
+          url: https://github.com/rh-opencodequest-origins/pe-workshop-entities.git
         - name: template-developer-self-service
-          url: https://github.com/redhat-pe-workshop/rhdh-template-developer-self-service.git
+          url: https://github.com/rh-opencodequest-origins/rhdh-template-developer-self-service.git
         - name: orchestrator-workflows
-          url: https://github.com/redhat-pe-workshop/orchestrator-workflows.git
+          url: https://github.com/rh-opencodequest-origins/orchestrator-workflows.git
       users:
         - id: pe1
         - id: pe2
@@ -66,27 +66,27 @@ gitlab:
     - name: parasol
       repo:
         - name: parasol-store
-          url: https://github.com/redhat-pe-workshop/parasol-store.git
+          url: https://github.com/rh-opencodequest-origins/parasol-store.git
           properties:
             onlyMergeWhenPipelineSucceeds: true
         - name: parasol-web
-          url: https://github.com/redhat-pe-workshop/parasol-web.git
+          url: https://github.com/rh-opencodequest-origins/parasol-web.git
           properties:
             onlyMergeWhenPipelineSucceeds: true
         - name: parasol-store-api
-          url: https://github.com/redhat-pe-workshop/parasol-store-api.git
+          url: https://github.com/rh-opencodequest-origins/parasol-store-api.git
         - name: parasol-db-manifests
-          url: https://github.com/redhat-pe-workshop/parasol-db-manifests.git
+          url: https://github.com/rh-opencodequest-origins/parasol-db-manifests.git
         - name: parasol-store-manifests
-          url: https://github.com/redhat-pe-workshop/parasol-store-manifests.git
+          url: https://github.com/rh-opencodequest-origins/parasol-store-manifests.git
           properties:
             onlyMergeWhenPipelineSucceeds: true          
         - name: parasol-web-manifests
-          url: https://github.com/redhat-pe-workshop/parasol-web-manifests.git
+          url: https://github.com/rh-opencodequest-origins/parasol-web-manifests.git
         - name: parasol-store-build-manifests
-          url: https://github.com/redhat-pe-workshop/parasol-store-build-manifests.git
+          url: https://github.com/rh-opencodequest-origins/parasol-store-build-manifests.git
         - name: all-location-parasol
-          url: https://github.com/redhat-pe-workshop/all-location-parasol.git
+          url: https://github.com/rh-opencodequest-origins/all-location-parasol.git
       users:
         - id: dev1
         - id: dev2
@@ -95,7 +95,7 @@ gitlab:
     - name: global
       repo:
         - name: global-techdocs
-          url: https://github.com/redhat-pe-workshop/global-techdocs.git
+          url: https://github.com/rh-opencodequest-origins/global-techdocs.git
       users:
         - id: dev1
         - id: dev2
