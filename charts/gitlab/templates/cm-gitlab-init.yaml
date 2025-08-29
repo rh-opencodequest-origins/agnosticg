@@ -69,7 +69,7 @@ data:
 
 {{- range $item := .Values.gitlab.users.users }}
 
-        - name: Create users
+        - name: Create user {{ $item.id }}
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/users
             method: POST
@@ -104,7 +104,7 @@ data:
 
 {{- range $item := .Values.gitlab.groups }}
 
-        - name: Create group
+        - name: Create group {{ $item.name }}
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/groups
             method: POST
