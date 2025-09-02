@@ -18,17 +18,17 @@ spec:
       labels:
         name: sonardb
     spec:
-      initContainers:
-      - name: take-data-dir-ownership
-        command:
-          - /bin/sh
-          - '-c'
-        volumeMounts:
-          - name: sonardb-data
-            mountPath: /var/lib/pgsql/data
-        image: ubi8/ubi-minimal
-        args:
-          - mkdir -p /var/lib/pgsql/data; chmod -R 775 /var/lib/pgsql/data;
+      # initContainers:
+      # - name: take-data-dir-ownership
+      #   command:
+      #     - /bin/sh
+      #     - '-c'
+      #   volumeMounts:
+      #     - name: sonardb-data
+      #       mountPath: /var/lib/pgsql/data
+      #   image: ubi8/ubi-minimal
+      #   args:
+      #     - mkdir -p /var/lib/pgsql/data; chmod -R 775 /var/lib/pgsql/data;
       containers:
       - env:
         - name: POSTGRESQL_USER

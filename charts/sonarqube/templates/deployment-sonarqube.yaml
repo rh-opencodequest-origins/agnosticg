@@ -19,16 +19,16 @@ spec:
         app: sonarqube
         deploymentconfig: sonarqube
     spec:
-      initContainers:
-      - name: take-data-dir-ownership
-        image: ubi8/ubi-minimal
-        command: ["/bin/sh", "-c"]
-        args:
-          - mkdir -p /opt/sonarqube/data;
-            chmod -R 775 /opt/sonarqube/data;
-        volumeMounts:
-        - name: sonar-data
-          mountPath: /opt/sonarqube/data
+      # initContainers:
+      # - name: take-data-dir-ownership
+      #   image: ubi8/ubi-minimal
+      #   command: ["/bin/sh", "-c"]
+      #   args:
+      #     - mkdir -p /opt/sonarqube/data;
+      #       chmod -R 775 /opt/sonarqube/data;
+      #   volumeMounts:
+      #   - name: sonar-data
+      #     mountPath: /opt/sonarqube/data
       containers:
       - env:
         - name: JDBC_URL
