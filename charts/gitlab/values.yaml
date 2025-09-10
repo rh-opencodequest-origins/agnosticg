@@ -151,6 +151,7 @@ gitops:
 
 quay:
   host: 
+  project: quayadmin
 
 vault:
   name: vault
@@ -158,3 +159,6 @@ vault:
 
 orchestrator:
   namespace: orchestrator
+
+stackrox:
+  endpoint: 

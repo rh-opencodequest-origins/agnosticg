@@ -91,6 +91,8 @@ data:
             quay_host: "{{ $.Values.quay.host }}"
             orchestrator_namespace: "{{ $.Values.orchestrator.namespace }}"
             group: "{{ $item.group }}"
+            quay_project: "{{ $.Values.quay.project }}"
+            stackrox_endpoint: "{{ $.Values.stackrox.endpoint }}"
 {{- end }}
 
         - name: Add new files to the repository
