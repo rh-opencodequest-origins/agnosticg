@@ -11,8 +11,10 @@ GitLab User password - Priority: individual user password > global password > ra
 {{- end }}
 {{- end }}
 
-
-{{ define "gitlab.repo.check-pipeline" -}}
+{{/*
+GitLab repository pipeline check
+*/}}
+{{- define "gitlab.repo.check-pipeline" -}}
 {{- $arg := . }}
 {{- if $arg.properties }}
 {{- if $arg.properties.onlyMergeWhenPipelineSucceeds }}
