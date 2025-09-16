@@ -1,13 +1,27 @@
+# {{/*
+# User password
+# */}}
+# {{- define "gitlab-user.password" -}}
+# {{- if .Values.gitlab.users.password }}
+# {{- .Values.gitlab.users.password }}
+# {{- else }}
+# {{- randAlpha 8 }}
+# {{- end }}
+# {{- end }}
+
 {{/*
-User password
+GitLab User password - Priority: individual user password > global password > random
 */}}
 {{- define "gitlab-user.password" -}}
-{{- if .Values.gitlab.users.password }}
+{{- if .user.password }}
+{{- .user.password }}
+{{- else if .Values.gitlab.users.password }}
 {{- .Values.gitlab.users.password }}
 {{- else }}
 {{- randAlpha 8 }}
 {{- end }}
 {{- end }}
+
 
 {{ define "gitlab.repo.check-pipeline" -}}
 {{- $arg := . }}
