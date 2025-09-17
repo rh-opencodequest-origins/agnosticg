@@ -73,14 +73,14 @@ data:
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/users
             method: POST
-            body_format: form-urlencoded
+            body_format: json
             body:
               admin: false
               email: {{ $item.id }}@rhdemo.com
               public_email: {{ $item.id }}@rhdemo.com
               skip_confirmation: true
               username: {{ $item.id }}
-              password: "{{ include "gitlab-user.password" (dict "Values" $.Values "user" $item) | urlencode }}"
+              password: "{{ include "gitlab-user.password" (dict "Values" $.Values "user" $item) }}"
               name: {{ $item.id }} GitLab
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
