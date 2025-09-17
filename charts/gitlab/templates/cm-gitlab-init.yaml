@@ -62,6 +62,7 @@ data:
               import_sources: "git,github,gitea"
               version_check_enabled: "false"
               allow_local_requests_from_web_hooks_and_services: "true"
+              password_complexity: false
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
             validate_certs: false
@@ -73,7 +74,7 @@ data:
           ansible.builtin.uri:
             url: https://{{ $.Values.gitlab.host }}/api/v4/users
             method: POST
-            body_format: json
+            body_format: form-urlencoded
             body:
               admin: false
               email: {{ $item.id }}@rhdemo.com
