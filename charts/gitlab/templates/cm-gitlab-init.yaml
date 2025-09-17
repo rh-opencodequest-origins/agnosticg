@@ -80,7 +80,7 @@ data:
               public_email: {{ $item.id }}@rhdemo.com
               skip_confirmation: true
               username: {{ $item.id }}
-              password: "{{ include "gitlab-user.password" (dict "Values" $.Values "user" $item) }}"
+              password: "{{ include "gitlab-user.password" (dict "Values" $.Values "user" $item) | urlencode }}"
               name: {{ $item.id }} GitLab
             headers:
               PRIVATE-TOKEN: '{{ "{{" }} root_token {{ "}}" }}'
