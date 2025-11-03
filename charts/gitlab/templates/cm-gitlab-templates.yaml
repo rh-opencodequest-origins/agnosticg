@@ -94,8 +94,8 @@ data:
             quay_project: "{{ $.Values.quay.project }}"
             stackrox_endpoint: "{{ $.Values.stackrox.endpoint }}"
             user1: "{{ $item.user1 }}"
-            user2: "{{ $item.user1 }}"
-            user3: "{{ $item.user1 }}"
+            user2: "{{ $item.user2 }}"
+            user3: "{{ $item.user3 }}"
 {{- end }}
 
         - name: Add new files to the repository
