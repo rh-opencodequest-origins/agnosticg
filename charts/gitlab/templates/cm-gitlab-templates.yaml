@@ -96,6 +96,8 @@ data:
             user1: "{{ $item.user1 }}"
             user2: "{{ $item.user2 }}"
             user3: "{{ $item.user3 }}"
+            teamid: "{{ $item.teamid }}"
+            ocpdomain: "{{ $item.ocpdomain }}"
 {{- end }}
 
         - name: Add new files to the repository
